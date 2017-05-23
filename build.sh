@@ -26,8 +26,6 @@ set -ex
 # this will also get all dependencies.
 apk add --update --no-cache s6-rc s6-portable-utils
 
-S6_OVERLAY_RELEASE="v1.19.1.1"
-
 # Pull in the overlay binaries
 apk add --update --no-cache curl
 curl -L https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_RELEASE}/s6-overlay-nobin.tar.gz | tar zx -C /
