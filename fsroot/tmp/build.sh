@@ -1,6 +1,11 @@
 #!/bin/sh
 set -ex
 
+
+# Ensure that version numbers are set
+: "${S6_OVERLAY_VERSION:?ERROR: not set!}"
+
+
 # at the time of writing this file, s6-overlay contains the following binaries
 # automatically included in all of their releases, with the exception of the
 # 'nobin' package.
@@ -26,12 +31,14 @@ set -ex
 # this will also get all dependencies.
 apk add --update --no-cache s6-rc s6-portable-utils
 
-# Pull in the overlay binaries
+
+# Pull in the s6 overlay binaries
 apk add --update --no-cache curl
-curl -L https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_RELEASE}/s6-overlay-nobin.tar.gz | tar zx -C /
+curl -L https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-nobin.tar.gz | tar zx -C /
 
 
 # remove all installation-only packages
 apk del curl
 # and clear the apk cache
 rm -rf /var/cache/apk/*
+
