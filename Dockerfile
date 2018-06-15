@@ -1,7 +1,7 @@
-FROM alpine:latest
+FROM alpine:3.7
 MAINTAINER rjlasko
 
-ENV S6_OVERLAY_VERSION "1.19.1.1"
+ENV S6_OVERLAY_VERSION "1.21.4.0"
 
 COPY fsroot /
 RUN /bin/sh /tmp/build.sh && \
